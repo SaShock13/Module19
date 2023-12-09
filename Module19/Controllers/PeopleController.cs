@@ -6,38 +6,25 @@ namespace Module19.Controllers
 {
     public class PeopleController : Controller
     {
-        Repository repository = new();
+        List<Person> Persons { get; set; }
         PeopleDBContext dataBase;
         public PeopleController(PeopleDBContext db)
         {
 
             dataBase = db;
+            Persons = db.Persons.ToList();
             //FillDb();
         }
 
 
         public IActionResult Index()
         {
-            Person person = new Person()
-            {
-
-                FirstName = "Виталий",
-                LastName = "Пугачёв",
-                SurName = "Валерьянович",
-                PhoneNumber = "+7 (987) 789-35-50",
-                PostalAddress = "Рязань",
-                Description = "Тихий и упорядоченный человек с прекрасным чувством юмора. Он всегда готов помочь окружающим и часто выступает в качестве посредника в конфликтных ситуациях."
-            };
-
-            //dataBase.Persons.Add(person);
-            //dataBase.SaveChangesAsync();
-
-            return View(dataBase.Persons.ToList());
+            return View(Persons);
         }
         public IActionResult FullInfo(int id)
         {
             ViewBag.Title = "Полная Информация";
-            Person person = dataBase.Persons.Where(x => x.Id == id).First();
+            Person person = Persons.Where(x => x.Id == id).First();
             return View(person);
         }
 
