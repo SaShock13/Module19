@@ -4,6 +4,7 @@ namespace Module19.Model
 {
     public class Repository
     {
+        PeopleDBContext db;
         private List<Person> persons;
         public List<Person> Persons
         { 
@@ -16,14 +17,25 @@ namespace Module19.Model
         public Repository()
         {
             persons = new List<Person>();
-            FillCollection();
+            FillDb();
+            
+            //db.Persons.Add(new Person()
+            //{
+            //    FirstName = "Иван",
+            //    LastName = "Смирнов",
+            //    SurName = "Петрович",
+            //    PhoneNumber = "+7 (987) 654-32-10",
+            //    PostalAddress = "Санкт-Петербург",
+            //    Description = "Иван Петрович - тихий и упорядоченный человек с прекрасным чувством юмора. Он всегда готов помочь окружающим и часто выступает в качестве посредника в конфликтных ситуациях."
+            //});
+            //persons = db.Persons.ToList<Person>();
             
         }
-        public void FillCollection()
+        public void FillDb()
         {
             var person1 = new Person()
             {
-                ID = id++,
+                Id = id++,
                 FirstName = "Иван",
                 LastName = "Смирнов",
                 SurName = "Петрович",
@@ -33,7 +45,7 @@ namespace Module19.Model
             };
             var person2 = new Person()
             {
-                ID = id++,
+                Id = id++,
                 FirstName = "Александра",
                 LastName = "Козлова",
                 SurName = "Ивановна ",
@@ -43,7 +55,7 @@ namespace Module19.Model
             };
             var person3 = new Person()
             {
-                ID = id++,
+                Id = id++,
                 FirstName = "Максим",
                 LastName = "Попов",
                 SurName = "Сергеевич",
@@ -53,7 +65,7 @@ namespace Module19.Model
             };
             var person4 = new Person()
             {
-                ID = id++,
+                Id = id++,
                 FirstName = "Елена",
                 LastName = "Соколова",
                 SurName = "Алексеевна ",
@@ -63,7 +75,7 @@ namespace Module19.Model
             };
             var person5 = new Person()
             {
-                ID = id++,
+                Id = id++,
                 FirstName = "Дмитрий ",
                 LastName = "Иванов",
                 SurName = "Николаевич ",
@@ -72,6 +84,7 @@ namespace Module19.Model
                 Description = "Дмитрий Николаевич - творческая и инициативная личность. Он обладает ярким воображением и нестандартным подходом к решению задач. Дмитрий Николаевич часто выступает в качестве инициатора новых проектов и старается вносить позитивные изменения вокруг."
             };
             List<Person> list = new List<Person>() { person1, person2, person3, person4, person5 };
+            //db.Persons.AddRange(list);
             Persons.AddRange(list);
            
         }
