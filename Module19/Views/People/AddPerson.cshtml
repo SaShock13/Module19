@@ -1,0 +1,25 @@
+﻿
+
+@{
+    ViewBag.Title = "Добавление записи";
+    Layout = "_Layout";
+}
+
+<form action="~/People/AddPerson" method='post'>
+    <label>Фамилия:</label><br />
+    <input name='person.LastName' /><br />
+    <label>Имя:</label><br />
+    <input name='person.FirstName' /><br />
+    <label>Отчество:</label><br />
+    <input name='person.SurName' /><br />
+    <label>Место жительства:</label><br />
+    <input name='person.PostalAddress' /><br />
+    <label>Номер телефона:</label><br />
+    <input name='person.PostalAddress' /><br />
+    <label>Краткое описание:</label><br />
+    <input name='person.Description' /><br />
+    <p></p>
+    <input type='submit' value='Добавить' />
+</form>
+
+

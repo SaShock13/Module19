@@ -9,7 +9,7 @@ namespace Module19.Model
         public PeopleDBContext(DbContextOptions<PeopleDBContext> options) : base(options)
         {
             //Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
 
