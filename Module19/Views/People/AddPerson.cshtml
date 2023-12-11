@@ -4,22 +4,40 @@
     ViewBag.Title = "Добавление записи";
     Layout = "_Layout";
 }
+<div class="m-2 w-25">
 
-<form action="~/People/AddPerson" method='post'>
-    <label>Фамилия:</label><br />
-    <input name='person.LastName' /><br />
+<form  action="~/People/AddPerson" method='post'>
+        <div class="form-group">
+
+            <label style="text-align: center">Фамилия:</label><br />
+    <input class="form-control" name='person.LastName' /><br />
+        </div>
+        <div class="form-group">
     <label>Имя:</label><br />
-    <input name='person.FirstName' /><br />
+            <input class="form-control" name='person.FirstName' /><br />
+        </div>
+        <div class="form-group">
     <label>Отчество:</label><br />
-    <input name='person.SurName' /><br />
+            <input class="form-control" name='person.SurName' /><br />
+        </div>
+        <div class="form-group">
     <label>Место жительства:</label><br />
-    <input name='person.PostalAddress' /><br />
+            <input class="form-control" name='person.PostalAddress' /><br />
+        </div>
+        <div class="form-group">
     <label>Номер телефона:</label><br />
-    <input name='person.PostalAddress' /><br />
+            <input class="form-control" name='person.PostalAddress' /><br />
+        </div>
+        <div class="form-group">
     <label>Краткое описание:</label><br />
-    <input name='person.Description' /><br />
+            <input class="form-control" name='person.Description' /><br />
+        </div>
     <p></p>
-    <input type='submit' value='Добавить' />
+        <div class="text-center">
+            
+        <input  type='submit' class="btn btn-primary " value='Добавить' />
+        </div>
 </form>
 
+</div>
 

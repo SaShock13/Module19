@@ -6,15 +6,22 @@
 }
 @model IEnumerable<Person>
 
-<h2 class="mystyle"> Записи : </h2>
+    <div class="mx-2">
 
-<table class="table">
+    <h2 class="mystyle"> Записи : </h2>
+
+    <div class="table-responsive my-2 border rounded">
+
+        <table class="table table-bordered mb-0 ">
+
+    @*  <caption>Записная книжка :</caption> *@
 
     <thead style="font-size:20px;">
         <tr class="tableStyle1">
             <th>ID</th>
             <th>Фамилия</th>
             <th>Имя</th>
+            <th colspan="2">Действия</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +39,19 @@
             }
         }
     </tbody>  
-</table>
-<a href="/People/AddPerson">Добавить запись</a>
+    <tfoot>
+                <tr>
+                    <th colspan="5">Кликнуть по ID для детальной информации о контакте</th>
+                </tr>
+        
+
+    </tfoot>
+    </table>
+ </div>
+
+    <a class="btn btn-primary" href="/People/AddPerson">Добавить запись</a>
+
+    </div>
+
+
 
