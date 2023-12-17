@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Module19.Model;
 
 
@@ -28,7 +29,7 @@ namespace Module19.Controllers
             Person person = Persons.Where(x => x.Id == id).First();
             return View(person);
         }
-
+        [Authorize]
         public IActionResult DeletePerson(int id)
         {
             
@@ -39,6 +40,7 @@ namespace Module19.Controllers
             
         }
         [HttpDelete]
+        [Authorize]
         public string Delete(int id)
         {
 
@@ -53,6 +55,7 @@ namespace Module19.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public IActionResult AddPerson()
         {
 
@@ -69,6 +72,7 @@ namespace Module19.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult EditPerson(int id)
         {
             
@@ -78,7 +82,7 @@ namespace Module19.Controllers
 
             return View(person);
         }
-        [HttpPost]
+        [HttpPost] [Authorize]
         public IActionResult EditPerson(Person person,int id)
         {
             Person oldPerson = dataBase.Persons.Where(x => x.Id == id).First();
