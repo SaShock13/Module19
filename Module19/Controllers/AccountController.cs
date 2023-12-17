@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Module19.Authorization;
@@ -14,8 +15,8 @@ namespace Module19.Controllers
         private readonly SignInManager<User> signManager;
         private  RoleManager<IdentityRole>roleManager { get; }
         // создаем роли
-        IdentityRole role1 = new IdentityRole { Name = "admin" };
-        IdentityRole role2 = new IdentityRole { Name = "user" };
+        IdentityRole roleAdmin = new IdentityRole { Name = "admin" };
+        IdentityRole roleUser = new IdentityRole { Name = "user" };
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signManager, RoleManager<IdentityRole> roleMan)
         {
@@ -25,35 +26,9 @@ namespace Module19.Controllers
 
 
             //регистрируем роли
-            roleManager.CreateAsync(role1);
-            roleManager.CreateAsync(role2);
+            roleManager.CreateAsync(roleUser);
+            roleManager.CreateAsync(roleAdmin);
         }
-
-       
-        
-
-        //// добавляем роли в бд
-        //      roleManager.Create(role1);
-        //    roleManager.Create(role2);
- 
-        //    // создаем пользователей
-        //    var admin = new ApplicationUser { Email = "somemail@mail.ru", UserName = "somemail@mail.ru" };
-        //      string password = "ad46D_ewr3";
-        //      var result = userManager.Create(admin, password);
- 
-        //    // если создание пользователя прошло успешно
-        //    if(result.Succeeded)
-        //    {
-        //        // добавляем для пользователя роль
-        //        userManager.AddToRole(admin.Id, role1.Name);
-        //        userManager.AddToRole(admin.Id, role2.Name);
-        //    }
-
-
-
-
-
-
 
 
     public IActionResult Index()
@@ -66,7 +41,16 @@ namespace Module19.Controllers
         {
 
             LogInUser user = new LogInUser();
-            user.ReturnUrl = returnUrl;
+            if (returnUrl!=null)
+            {
+                user.ReturnUrl=returnUrl;
+            }             
+            else user.ReturnUrl = "~/";
+                
+
+
+
+            
             return View(user);
         }
 
@@ -74,10 +58,10 @@ namespace Module19.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LogInUser user)
         {
+                
             if (ModelState.IsValid)
             {
 
-                
                 var loginResult = await signManager.PasswordSignInAsync(user.LoginProp,
                     user.Password,
                     false,
@@ -85,6 +69,7 @@ namespace Module19.Controllers
 
                 if (loginResult.Succeeded)
                 {
+
                     if (Url.IsLocalUrl(user.ReturnUrl))
                     {
                         return Redirect(user.ReturnUrl);
@@ -124,7 +109,7 @@ namespace Module19.Controllers
                 if (createResult.Succeeded)
                 {
 
-                    await userManager.AddToRoleAsync(user, role1.Name);
+                    await userManager.AddToRoleAsync(user, roleUser.Name);
                     await signManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "People");
                     
@@ -142,13 +127,19 @@ namespace Module19.Controllers
         }
 
 
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        [Authorize]
+        public async Task<IActionResult> LogOut()
         {
             await signManager.SignOutAsync();
             return RedirectToAction("Index", "People");
         }
 
-        
+        public async Task<IActionResult> AccessDenied()
+        {
+            
+            return View();
+        }
+
+
     }
 }

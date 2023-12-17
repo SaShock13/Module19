@@ -11,5 +11,9 @@ namespace Module19.Model
 
         }
 
+        public PeopleDBContext() 
+        {
+            
+        }
     }
 }

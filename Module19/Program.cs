@@ -1,4 +1,14 @@
- using Microsoft.AspNetCore.Identity;
+
+///Вопросы:
+///1. Делаю LogIn, потом LogOut и снова LogIn в тот же аккаунт - вылетает ошибка InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913. Не понимаю, как победить. 
+///2. Logout как делать перед закрытием окна. Когда закрываю окно и снова вхожу, юзер остается авторизован.
+
+
+
+
+
+
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Module19.Model;
 using Module19.Authorization;
@@ -12,8 +22,8 @@ string authString = builder.Configuration.GetConnectionString("AuthLConnection")
 IServiceCollection services = builder.Services;
 
 
-services.AddDbContext<PeopleDBContext>(options => options.UseSqlServer(myConnection));
-services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(authString));
+services.AddDbContext<PeopleDBContext>(options => options.UseSqlServer(myConnection),ServiceLifetime.Scoped);
+services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(authString), ServiceLifetime.Scoped);
 
 services.AddMvc(options => options.EnableEndpointRouting = false);
  IdentityBuilder iB = services.AddIdentity<User, IdentityRole>();
@@ -43,6 +53,7 @@ services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
     options.LoginPath = "/Account/Login";
     options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
     options.SlidingExpiration = true;
 });
 

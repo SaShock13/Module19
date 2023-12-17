@@ -20,9 +20,7 @@
             <form class="form" asp-action="Login" asp-controller="Account" asp-antiforgery="true">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                @* <input asp-for="ReturnUrl"  /> *@
-
-                <input value=@Model.ReturnUrl asp-for="ReturnUrl"/>
+                <input hidden="hidden" value=@Model.ReturnUrl asp-for="ReturnUrl"/>
 
                 <div class="col-xs-12 mb2">
                     <div class="form-group ">
@@ -41,31 +39,7 @@
                 </div>
             </form>
 
-            @* <form class="form" asp-action="Register" asp-controller="Account" asp-antiforgery="true">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="col-xs-12 mb2">
-                    <div class="form-group">
-                        <input asp-for="LoginProp" class="form-control" placeholder="Логин" />
-                    </div>
-                </div>
-
-                <div class="col-xs-12 mb2">
-                    <div class="form-group">
-                        <input asp-for="Password" class="form-control" placeholder="Пароль" />
-                    </div>
-                </div>
-
-                <div class="col-xs-12 mb2 ">
-                    <div class="form-group">
-                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Продублируйте пароль" />
-                    </div>
-                </div>
-
-                <div class="text-center col-xs-12">
-                    <button type="submit" class="btn btn-default">Зарегистрироваться</button>
-                </div>
-            </form> *@
-
+            
         </div>
     </div>
 </div>

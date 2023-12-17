@@ -29,7 +29,7 @@ namespace Module19.Controllers
             Person person = Persons.Where(x => x.Id == id).First();
             return View(person);
         }
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public IActionResult DeletePerson(int id)
         {
             
@@ -72,7 +72,7 @@ namespace Module19.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public IActionResult EditPerson(int id)
         {
             
@@ -82,7 +82,8 @@ namespace Module19.Controllers
 
             return View(person);
         }
-        [HttpPost] [Authorize]
+        [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult EditPerson(Person person,int id)
         {
             Person oldPerson = dataBase.Persons.Where(x => x.Id == id).First();

@@ -23,6 +23,27 @@
 
 </head>
 <body>
+
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div style="text-align:right ">
+
+            <a href="/Account/LogOut" style="margin-right:1rem">Выход из аккаунта</a>
+            
+        </div>
+    }
+    else
+    {
+        <div style="text-align:right ">
+        
+        <a href="/Account/Register" style="margin-right:1rem">Регистрация</a>
+            <a href="/Account/Login" style="margin-right:1rem">Вход в аккаунт</a>
+    </div>
+    }
+
+
+
     @RenderBody()
 </body>
 </html>
