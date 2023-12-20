@@ -7,6 +7,7 @@
     <title>@ViewBag.Title</title>
 
     <link rel="stylesheet" href="~/css/stylecss.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,11 +25,16 @@
 </head>
 <body>
 
-
+ 
     @if (User.Identity.IsAuthenticated)
     {
+       
         <div style="text-align:right ">
 
+            <b style="margin-right:2rem">
+                Вы вошли как: @User.Identity.Name
+                
+            </b>
             <a href="/Account/LogOut" style="margin-right:1rem">Выход из аккаунта</a>
             
         </div>
@@ -36,7 +42,10 @@
     else
     {
         <div style="text-align:right ">
-        
+            <b style="margin-right:2rem">
+               Невалидированный пользователь
+
+            </b>
         <a href="/Account/Register" style="margin-right:1rem">Регистрация</a>
             <a href="/Account/Login" style="margin-right:1rem">Вход в аккаунт</a>
     </div>

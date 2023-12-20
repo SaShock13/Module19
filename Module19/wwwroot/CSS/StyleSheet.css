@@ -1,0 +1,22 @@
+﻿
+.mb2 {
+    margin-bottom: 1rem;
+}
+
+.mx30 {
+    margin-right: 30%;
+    margin-left: 30%;
+}
+
+.centerDiv {
+    margin: 0 auto;
+}
+
+.reset {
+    margin: 0;
+    padding: 0;
+}
+.modalMy {
+    margin: 0 35% 0 35%;
+    min-width: 15rem
+}

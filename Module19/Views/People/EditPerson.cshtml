@@ -3,42 +3,45 @@
     Layout = "_Layout";
 }
 @model Person
-<div class="m-2 w-25">
+<div class="reset">
 
-<form action="~/People/EditPerson" method='post'>
-        <div class="form-group">
-    <label>Фамилия:</label><br />
-            <input class="form-control" name='person.LastName' value='@Model.LastName' /><br />
-        </div>
-        <div class="form-group">
-    <label>Имя:</label><br />
-            <input class="form-control" name='person.FirstName' value='@Model.FirstName' /><br />
-        </div>
-        <div class="form-group">
-    <label>Отчество:</label><br />
-            <input class="form-control" name='person.SurName' value='@Model.SurName' /><br />
-        </div>
-        <div class="form-group">
-    <label>Место жительства:</label><br />
-            <input class="form-control" name='person.PostalAddress' value='@Model.PostalAddress' /><br />
-        </div>
-        <div class="form-group">
-    <label>Номер телефона:</label><br />
-            <input class="form-control" name='person.PhoneNumber' value='@Model.PhoneNumber' /><br />
-        </div>
-        <div class="form-group">
-    <label>Краткое описание:</label><br />
-            <input class="form-control" name='person.Description' value='@Model.Description' /><br />
-        </div>
+    <div class="reset" style="margin:0 35% 0 35% ; min-width:15rem">
 
-    <input hidden="hidden"  name='id' value='@ViewBag.Id' /><br />
+    <form action="~/People/EditPerson" method='post'>
+            <div class="form-group">
+        <label>Фамилия:</label><br />
+                <input class="form-control" name='person.LastName' value='@Model.LastName' /><br />
+            </div>
+            <div class="form-group">
+        <label>Имя:</label><br />
+                <input class="form-control" name='person.FirstName' value='@Model.FirstName' /><br />
+            </div>
+            <div class="form-group">
+        <label>Отчество:</label><br />
+                <input class="form-control" name='person.SurName' value='@Model.SurName' /><br />
+            </div>
+            <div class="form-group">
+        <label>Место жительства:</label><br />
+                <input class="form-control" name='person.PostalAddress' value='@Model.PostalAddress' /><br />
+            </div>
+            <div class="form-group">
+        <label>Номер телефона:</label><br />
+                <input class="form-control" name='person.PhoneNumber' value='@Model.PhoneNumber' /><br />
+            </div>
+            <div class="form-group">
+        <label>Краткое описание:</label><br />
+                <input class="form-control" name='person.Description' value='@Model.Description' /><br />
+            </div>
 
-    <p></p>
+        <input hidden="hidden"  name='id' value='@ViewBag.Id' /><br />
+
+        <p></p>
     
-        <div class="text-center">
-            <input type='submit' class="btn btn-primary " value='Изменить' />
-        </div>
-</form>
+            <div class="text-center">
+                <input type='submit' class="btn btn-primary " value='Изменить' />
+            </div>
+    </form>
 
+    </div>
 </div>
 

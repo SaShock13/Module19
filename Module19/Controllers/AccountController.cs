@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -14,25 +15,37 @@ namespace Module19.Controllers
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signManager;
         private  RoleManager<IdentityRole>roleManager { get; }
+        
         // создаем роли
         IdentityRole roleAdmin = new IdentityRole { Name = "admin" };
         IdentityRole roleUser = new IdentityRole { Name = "user" };
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signManager, RoleManager<IdentityRole> roleMan)
+        public AccountController(   UserManager<User> userManager, SignInManager<User> signManager, 
+                                    RoleManager<IdentityRole> roleMan, ILoggerFactory loggerFactory, 
+                                    ILogger<AccountController> logger)
         {
             this.userManager = userManager;
             this.signManager = signManager;
             this.roleManager = roleMan;
 
-
+            logger.LogCritical("Сработал Контроллер Аккаунтов");
+            
+            //CreateRoles();
+            
             //регистрируем роли
-            roleManager.CreateAsync(roleUser);
-            roleManager.CreateAsync(roleAdmin);
+            
         }
-
+        //ЧТО-ТО ЗДЕСЬ МЕШАЕТ призапуске в конструкторе
+        async Task CreateRoles()
+        {
+           
+            await roleManager.CreateAsync(roleUser);
+            await roleManager.CreateAsync(roleAdmin);
+        }
 
     public IActionResult Index()
         {
+            
             return View();
         }
 
@@ -58,7 +71,13 @@ namespace Module19.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LogInUser user)
         {
-                
+            
+
+
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("Аутентифицирован");
+            }
             if (ModelState.IsValid)
             {
 
@@ -114,7 +133,7 @@ namespace Module19.Controllers
                     return RedirectToAction("Index", "People");
                     
                 }
-                else//иначе
+                else
                 {
                     foreach (var identityError in createResult.Errors)
                     {
@@ -131,6 +150,7 @@ namespace Module19.Controllers
         public async Task<IActionResult> LogOut()
         {
             await signManager.SignOutAsync();
+            //HttpContext.SignOutAsync();
             return RedirectToAction("Index", "People");
         }
 

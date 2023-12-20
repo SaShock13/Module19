@@ -18,21 +18,26 @@ using Module19.Authorization;
 var builder = WebApplication.CreateBuilder(args);
 string myConnection = builder.Configuration.GetConnectionString("MSSQLConnection");
 string authString = builder.Configuration.GetConnectionString("AuthLConnection");
-
+builder.Logging.AddDebug();
 IServiceCollection services = builder.Services;
-
+//LoggerFactory.Create(b=>b.AddDebug());
+//services.AddLogging(b=>b.AddDebug());
 
 services.AddDbContext<PeopleDBContext>(options => options.UseSqlServer(myConnection),ServiceLifetime.Scoped);
 services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(authString), ServiceLifetime.Scoped);
 
 services.AddMvc(options => options.EnableEndpointRouting = false);
- IdentityBuilder iB = services.AddIdentity<User, IdentityRole>();
+IdentityBuilder iB = services.AddIdentity<User, IdentityRole>();
+
 iB.AddEntityFrameworkStores<AuthDbContext>();
 iB.AddDefaultTokenProviders();
 iB.AddRoles<IdentityRole>();
 
+
+
 services.Configure<IdentityOptions>(options =>
 {
+    //Конфигурация Требований к данным
     var pass = options.Password;
     pass.RequiredLength = 2; // минимальное количество знаков в пароле
     pass.RequireDigit = false;

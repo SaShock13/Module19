@@ -5,16 +5,11 @@
 @{
     ViewBag.Title = "Вход в аккаунт";
 }
-<style>
-    .mb2{
-        margin-bottom:1rem;
-        
-    }
-</style>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 well">
+
+<div class="container" >
+    <div class="reset">
+        <div class="reset" style="margin:0 35% 0 35% ; min-width:15rem">
             <h3 class="text-center">Вход</h3>
 
             <form class="form" asp-action="Login" asp-controller="Account" asp-antiforgery="true">
@@ -23,7 +18,7 @@
                 <input hidden="hidden" value=@Model.ReturnUrl asp-for="ReturnUrl"/>
 
                 <div class="col-xs-12 mb2">
-                    <div class="form-group ">
+                    <div class="form-group  mb2" style="margin-bottom:20px">
                         <input asp-for="LoginProp" class="form-control" placeholder="Логин" />
                     </div>
                 </div>

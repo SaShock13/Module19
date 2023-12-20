@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Module19.Model;
 
 
@@ -9,19 +10,27 @@ namespace Module19.Controllers
     {
         List<Person> Persons { get; set; }
         PeopleDBContext dataBase;
-        public PeopleController(PeopleDBContext db)
+        ILogger<PeopleController> logger;
+        public PeopleController(PeopleDBContext db,ILoggerFactory loggerFactory,ILogger<PeopleController> logger2)
         {
-
+            
+            
             dataBase = db;
             Persons = dataBase.Persons.ToList();
             //FillDb();
+            logger = loggerFactory.CreateLogger<PeopleController>();
+            logger.LogCritical("Это через логфэктори!!!!");
 
+            logger2.LogCritical("Это через логгер");
+            
         }
 
+        
 
         public IActionResult Index()
         {
-            return View(Persons);
+            logger.LogCritical("Index сработал в PeopleController");
+            return View(dataBase.Persons);
         }
         public IActionResult FullInfo(int id)
         {
@@ -63,10 +72,11 @@ namespace Module19.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddPerson(Person person)
+        public async Task<IActionResult> AddPerson(Person person)
         {
             dataBase.Add(person);
-            Save();
+            await dataBase.SaveChangesAsync();
+            //Save();
             return Redirect("~/");
 
         }
@@ -103,7 +113,7 @@ namespace Module19.Controllers
         public void Save()
         {
             dataBase.SaveChanges();
-            Persons = dataBase.Persons.ToList();
+            //Persons = dataBase.Persons.ToList();
         }
 
         public void FillDb()
