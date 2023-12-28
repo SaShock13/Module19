@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.EntityFrameworkCore;
 
 namespace Module19.Model
 {
@@ -6,14 +7,15 @@ namespace Module19.Model
     {
         public DbSet<Person> Persons { get; set; } = null!;
 
-        public PeopleDBContext(DbContextOptions<PeopleDBContext> options) : base(options)
-        {
+        //public PeopleDBContext(DbContextOptions<PeopleDBContext> options) : base(options)
+        //{
 
-        }
+        //}
 
-        public PeopleDBContext() 
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            optionsBuilder.UseSqlServer(@"Server = (localdb)\MSSQLLocalDB; Database = module19db; Trusted_Connection = True; ");
         }
     }
 }

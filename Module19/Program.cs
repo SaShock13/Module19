@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Module19.Model;
 using Module19.Authorization;
+using WebClient_PeopleContacts.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,8 +24,10 @@ IServiceCollection services = builder.Services;
 //LoggerFactory.Create(b=>b.AddDebug());
 //services.AddLogging(b=>b.AddDebug());
 
-services.AddDbContext<PeopleDBContext>(options => options.UseSqlServer(myConnection),ServiceLifetime.Scoped);
+//services.AddDbContext<PeopleDBContext>(options => options.UseSqlServer(myConnection),ServiceLifetime.Scoped);
 services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(authString), ServiceLifetime.Scoped);
+
+services.AddTransient<IGetData,GetDataFromAPIControllers>();//Добавление сервиса получения данных (Локальная БД или API )
 
 services.AddMvc(options => options.EnableEndpointRouting = false);
 IdentityBuilder iB = services.AddIdentity<User, IdentityRole>();

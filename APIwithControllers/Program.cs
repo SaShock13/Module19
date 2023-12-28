@@ -18,7 +18,7 @@ app.MapControllers();
 app.MapGet("/", () => "GET api/People - список всех контактов \n" +
                         "GET api/People/id - вывести контакт по ID \n" +
                         "POST api/People - ƒобавить контакт (ожидает обьект Person)\n" +
-                        "PUT api/People/id - заменить контакт (ожидает обьект Person)\n" +
+                        "PUT api/People - заменить контакт (ожидает обьект Person)\n" +
                         "DELETE api/People/id - удалить контакт по ID \n" +
                         " ");
 

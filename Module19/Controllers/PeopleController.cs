@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Module19.Model;
+using WebClient_PeopleContacts.Data;
 
 
 namespace Module19.Controllers
@@ -9,14 +10,15 @@ namespace Module19.Controllers
     public class PeopleController : Controller
     {
         List<Person> Persons { get; set; }
-        PeopleDBContext dataBase;
+        IGetData dataBase;
         ILogger<PeopleController> logger;
-        public PeopleController(PeopleDBContext db,ILoggerFactory loggerFactory,ILogger<PeopleController> logger2)
+        public PeopleController(ILoggerFactory loggerFactory,ILogger<PeopleController> logger2,IGetData db)
         {
             
             
             dataBase = db;
-            Persons = dataBase.Persons.ToList();
+            //Persons = dataBase.GetAll().ToList();
+            //Persons = dataBase.Persons.ToList();
             //FillDb();
             logger = loggerFactory.CreateLogger<PeopleController>();
             logger.LogCritical("Это через логфэктори!!!!");
@@ -30,37 +32,39 @@ namespace Module19.Controllers
         public IActionResult Index()
         {
             logger.LogCritical("Index сработал в PeopleController");
-            return View(dataBase.Persons);
+
+            return View(dataBase.GetAll());
+            //return View(dataBase.Persons);
         }
         public IActionResult FullInfo(int id)
         {
+
+            
             ViewBag.Title = "Полная Информация";
-            Person person = Persons.Where(x => x.Id == id).First();
-            return View(person);
+            //Person person = Persons.Where(x => x.Id == id).First();
+            return View(dataBase.GetById(id));
         }
         [Authorize(Roles = "admin")]
         public IActionResult DeletePerson(int id)
         {
-            
-            Person person = Persons.Where(x => x.Id == id).First();
-            dataBase.Persons.Remove(person);
-            Save();
+            dataBase.DeleteById(id);
             return Redirect("~/");
-            
-        }
-        [HttpDelete]
-        [Authorize]
-        public string Delete(int id)
-        {
-
-            Person person = Persons.Where(x => x.Id == id).First();
-            string lastName = person.LastName;
-            dataBase.Persons.Remove(person);
-            Save();
-            return $"Удалено {lastName} ";
 
         }
-       
+
+        //[Authorize]
+        //public void DeletePerson(int id)
+        //{
+        //   
+
+        //    //Person person = Persons.Where(x => x.Id == id).First();
+        //    //string lastName = person.LastName;
+        //    ////dataBase.Persons.Remove(person);
+        //    //Save();
+        //    //return $"Удалено {lastName} ";
+
+        //}
+
 
 
         [HttpGet]
@@ -74,9 +78,8 @@ namespace Module19.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPerson(Person person)
         {
-            dataBase.Add(person);
-            await dataBase.SaveChangesAsync();
-            //Save();
+            dataBase.AddPerson(person);
+            
             return Redirect("~/");
 
         }
@@ -87,32 +90,34 @@ namespace Module19.Controllers
         {
             
             ViewBag.Title = "Полная Информация";
-            ViewBag.Id = id;
-            Person person = Persons.Where(x => x.Id == id).First();
+            //ViewBag.Id = id;
+            IEnumerable<Person> persons = dataBase.GetAll();
+            Person person = persons.Where(x => x.Id == id).First();
 
             return View(person);
         }
+
         [HttpPost]
-        [Authorize(Roles = "admin")]
-        public IActionResult EditPerson(Person person,int id)
+        
+        public IActionResult EditPerson(Person person)
         {
-            Person oldPerson = dataBase.Persons.Where(x => x.Id == id).First();
 
-            oldPerson.LastName = person.LastName;
-            oldPerson.FirstName = person.FirstName;
-            oldPerson.SurName = person.SurName;
-            oldPerson.PhoneNumber = person.PhoneNumber;
-            oldPerson.Description = person.Description;
-            oldPerson.PostalAddress = person.PostalAddress;
+            dataBase.ChangePerson(person);
+            //Person oldPerson = dataBase.GetAll().Where(x => x.Id == id).First();
 
-            Save();
+            //oldPerson.LastName = person.LastName;
+            //oldPerson.FirstName = person.FirstName;
+            //oldPerson.SurName = person.SurName;
+            //oldPerson.PhoneNumber = person.PhoneNumber;
+            //oldPerson.Description = person.Description;
+            //oldPerson.PostalAddress = person.PostalAddress;
             return Redirect("~/");
 
         }
 
         public void Save()
         {
-            dataBase.SaveChanges();
+            //dataBase.SaveChanges();
             //Persons = dataBase.Persons.ToList();
         }
 
@@ -169,8 +174,8 @@ namespace Module19.Controllers
                 Description = "Дмитрий Николаевич - творческая и инициативная личность. Он обладает ярким воображением и нестандартным подходом к решению задач. Дмитрий Николаевич часто выступает в качестве инициатора новых проектов и старается вносить позитивные изменения вокруг."
             };
             
-            dataBase.Persons.AddRange(new List<Person>() { person1, person2, person3, person4, person5 }) ;
-            dataBase.SaveChangesAsync();
+            //dataBase.Persons.AddRange(new List<Person>() { person1, person2, person3, person4, person5 }) ;
+            //dataBase.SaveChangesAsync();
 
         }
     }

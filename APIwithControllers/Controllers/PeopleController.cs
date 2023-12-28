@@ -41,7 +41,7 @@ namespace APIwithControllers.Controllers
             return person;
         }
 
-        // PUT: api/People/5
+        // PUT: api/People
         
         [HttpPut]
         public async Task<IActionResult> PutPerson(Person person)
