@@ -30,18 +30,11 @@ namespace Module19.Controllers
 
             logger.LogCritical("Сработал Контроллер Аккаунтов");
             
-            //CreateRoles();
             
-            //регистрируем роли
+            
             
         }
-        //ЧТО-ТО ЗДЕСЬ МЕШАЕТ призапуске в конструкторе
-        async Task CreateRoles()
-        {
-           
-            await roleManager.CreateAsync(roleUser);
-            await roleManager.CreateAsync(roleAdmin);
-        }
+        
 
     public IActionResult Index()
         {
@@ -59,11 +52,7 @@ namespace Module19.Controllers
                 user.ReturnUrl=returnUrl;
             }             
             else user.ReturnUrl = "~/";
-                
-
-
-
-            
+             
             return View(user);
         }
 
@@ -150,7 +139,7 @@ namespace Module19.Controllers
         public async Task<IActionResult> LogOut()
         {
             await signManager.SignOutAsync();
-            //HttpContext.SignOutAsync();
+            
             return RedirectToAction("Index", "People");
         }
 

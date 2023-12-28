@@ -26,7 +26,7 @@ namespace WebClient_PeopleContacts.Data
         public void AddPerson(Person person)
         {
 
-            httpClient.PostAsJsonAsync(url, person);
+           var result = httpClient.PostAsJsonAsync(url, person).Result;
 
         }
 
