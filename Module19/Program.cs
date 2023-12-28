@@ -1,8 +1,9 @@
 
-///Вопросы:
-///1. Делаю LogIn, потом LogOut и снова LogIn в тот же аккаунт - вылетает ошибка InvalidOperationException: A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913. Не понимаю, как победить. 
-///2. Logout как делать перед закрытием окна. Когда закрываю окно и снова вхожу, юзер остается авторизован.
+using System.Text.RegularExpressions;
 
+///Вопросы:
+///2. Logout как делать перед закрытием окна. Когда закрываю окно и снова вхожу, юзер остается авторизован.
+///3.Only the invariant culture is supported in globalization-invariant mode. See https://aka.ms/GlobalizationInvariantMode for more information. (Parameter 'name')en - us is an invalid culture identifier.
 
 
 
@@ -12,7 +13,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Module19.Model;
 using Module19.Authorization;
-//using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 
 var builder = WebApplication.CreateBuilder(args);
