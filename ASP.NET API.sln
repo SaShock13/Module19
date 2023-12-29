@@ -9,7 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFClient_PeopleContacts", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIContacts", "APIContacts\APIContacts.csproj", "{3FB3A312-7F0C-4F7D-B657-1C8194E19588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIwithControllers", "APIwithControllers\APIwithControllers.csproj", "{C164FE90-0116-47C2-A69A-53F27B9CDEF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIwithControllers", "APIwithControllers\APIwithControllers.csproj", "{C164FE90-0116-47C2-A69A-53F27B9CDEF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetDataLibrary", "GetDataLibrary\GetDataLibrary.csproj", "{7DDCE6A7-CF90-4FD0-BA4B-75DD698880D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{117DE491-7472-4E35-94A0-F2B8D59564A5}"
+	ProjectSection(SolutionItems) = preProject
+		TO-DO.txt = TO-DO.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFIdentityLibrary", "WPFIdentityLibrary\WPFIdentityLibrary.csproj", "{3AF668E6-CC7F-48C4-BA88-93DF61026F71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +42,14 @@ Global
 		{C164FE90-0116-47C2-A69A-53F27B9CDEF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C164FE90-0116-47C2-A69A-53F27B9CDEF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C164FE90-0116-47C2-A69A-53F27B9CDEF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDCE6A7-CF90-4FD0-BA4B-75DD698880D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDCE6A7-CF90-4FD0-BA4B-75DD698880D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDCE6A7-CF90-4FD0-BA4B-75DD698880D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDCE6A7-CF90-4FD0-BA4B-75DD698880D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AF668E6-CC7F-48C4-BA88-93DF61026F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AF668E6-CC7F-48C4-BA88-93DF61026F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AF668E6-CC7F-48C4-BA88-93DF61026F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AF668E6-CC7F-48C4-BA88-93DF61026F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
