@@ -11,14 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIContacts", "APIContacts\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIwithControllers", "APIwithControllers\APIwithControllers.csproj", "{C164FE90-0116-47C2-A69A-53F27B9CDEF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetDataLibrary", "GetDataLibrary\GetDataLibrary.csproj", "{7DDCE6A7-CF90-4FD0-BA4B-75DD698880D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetDataLibrary", "GetDataLibrary\GetDataLibrary.csproj", "{7DDCE6A7-CF90-4FD0-BA4B-75DD698880D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{117DE491-7472-4E35-94A0-F2B8D59564A5}"
 	ProjectSection(SolutionItems) = preProject
 		TO-DO.txt = TO-DO.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFIdentityLibrary", "WPFIdentityLibrary\WPFIdentityLibrary.csproj", "{3AF668E6-CC7F-48C4-BA88-93DF61026F71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFIdentityLibrary", "WPFIdentityLibrary\WPFIdentityLibrary.csproj", "{3AF668E6-CC7F-48C4-BA88-93DF61026F71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Необязательно", "Необязательно", "{8FCCD7DF-090C-448B-ADF6-7980B5CD55A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3AF668E6-CC7F-48C4-BA88-93DF61026F71} = {8FCCD7DF-090C-448B-ADF6-7980B5CD55A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB03ADA1-D71D-4BE1-BC6E-9694EE534A4B}

@@ -33,14 +33,14 @@ namespace GetDataLibrary
 
         public void ChangePerson(Person person)
         {
-            
-            httpClient.PutAsJsonAsync(url, person);
+
+            var result = httpClient.PutAsJsonAsync(url, person).Result;
             
         }
 
         public void DeleteById(int id)
         {
-            httpClient.DeleteAsync(url + $"/{id}");
+            var result = httpClient.DeleteAsync(url + $"/{id}").Result;
         }
 
 

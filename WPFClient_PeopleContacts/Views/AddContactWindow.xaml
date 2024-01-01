@@ -1,0 +1,31 @@
+﻿<Window x:Class="WPFClient_PeopleContacts.Views.AddContactWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFClient_PeopleContacts.Views"
+        mc:Ignorable="d"
+        Height="450" Width="600"
+        ResizeMode="NoResize">
+    <Grid DataContext="{Binding TempPerson}">
+        <Label Name="lblCustomerName" HorizontalAlignment="Center" Content="Данные о контакте" Margin="10,10,10,0" VerticalAlignment="Top" Height="48"/>
+        <TextBox Name="tbLastName" HorizontalAlignment="Center" Margin="0,40,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="200"/>
+        <TextBox Name="tbFirstName" HorizontalAlignment="Center" Margin="0,70,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="200"/>
+        <TextBox Name="tbSurName" HorizontalAlignment="Center" Margin="0,100,0,0" TextWrapping="Wrap" Text="{Binding SurName}" VerticalAlignment="Top" Width="200"/>
+        <TextBox Name="tbPhoneNumber" HorizontalAlignment="Center" Margin="0,130,0,0" TextWrapping="Wrap" Text="{Binding PhoneNumber}" VerticalAlignment="Top" Width="200"/>
+        <TextBox Name="tbPostalAddress" HorizontalAlignment="Center" Margin="0,160,0,0" TextWrapping="Wrap" Text="{Binding PostalAddress}" VerticalAlignment="Top" Width="200"/>
+        <TextBox Name="tbDescription" HorizontalAlignment="Center" Margin="0,190,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Width="200"/>
+
+
+        <Button Name="btnAddCustomerOK" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,50" VerticalAlignment="Bottom" Height="50" Width="80" Click="btnOk"/>
+        <Label Margin="50,45,405,0" HorizontalContentAlignment="Right" Content="Фамилия"/>
+        <Label Margin="50,75,405,0" HorizontalContentAlignment="Right" Content="Имя"/>
+        <Label Margin="50,105,405,0" HorizontalContentAlignment="Right" Content="Отчество"/>
+        <Label Margin="50,135,405,0" HorizontalContentAlignment="Right" Content="Номер телефона"/>
+        <Label Margin="50,165,405,0" HorizontalContentAlignment="Right" Content="Город проживания"/>
+        <Label Margin="50,195,405,0" HorizontalContentAlignment="Right" Content="Описание"/>
+        
+
+
+    </Grid>
+</Window>
